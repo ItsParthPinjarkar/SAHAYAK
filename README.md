@@ -151,6 +151,7 @@ The dataset captures 21 raw physical, environmental, infrastructural, and demogr
 | `historical_disaster_frequency` | int | 0 – 20 events | Past decade disaster frequency |
 | **`silent_zone`** *(Target)* | int | 0 or 1 | **0 = Normal Zone, 1 = Silent Zone (Blackout)** |
 
+
 > **Data Provenance**: Sample dataset records are realistic **synthetic demonstration data** crafted to reflect physical vulnerability patterns in India. They do not constitute official classified government telemetry.
 
 ---
