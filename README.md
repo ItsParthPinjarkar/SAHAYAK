@@ -344,3 +344,42 @@ In an operational deployment, this prototype integrates with authoritative India
 2. **Synthetic Training Baseline**: The default model is trained on curated synthetic distributions. Production deployment requires calibration on historical disaster telemetry (e.g., Cyclone Fani, 2018 Kerala Floods, 2001 Bhuj Earthquake).
 3. **Distribution Shifts**: Extreme multi-hazard compounding events (e.g., simultaneous dam breach and cyclone landfall) may fall outside standard feature distributions.
 4. **Telecom Data Privacy**: Live operationalization requires authorized DoT access to tower telemetry under lawful emergency disaster declarations.
+
+---
+
+## 14. 🛰️ Integrated PS20 Disaster Intelligence Platform & SatQuery AI Studio
+
+The Silent Zone engine integrates directly into the unified 70-page full-stack situational platform in `ps20-disaster-intelligence`:
+- **Command Dashboard (`dashboard.html`)**: Interactive Leaflet GIS tactical map, Jordan ray-casting evacuation routing, NLP emergency triage, and live SQLite state store inspection.
+- **SatQuery AI Studio (`satquery.html`)**: Natural language to satellite tasking utilizing Sentinel-1 SAR radar, Sentinel-2 MSI optical (10m), and PlanetScope (3m) daily revisits with real-time NDWI, MNDWI, NDVI, and SAR coherence change metrics.
+- **16 Multi-Hazard Engines**: Unified ML suite spanning flood inundation, lead time, seismic building collapse, storm surge, and LP supply redistribution.
+- **1-Click Launcher**: Double-click `OPEN_FRONTEND.bat` to launch `http://localhost:8080/dashboard.html`.
+
+---
+
+## 15. 👥 Contributors & Core Team
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/singhrishikesh1">
+        <img src="https://github.com/singhrishikesh1.png" width="100px;" alt="Rishikesh Singh"/><br />
+        <sub><b>Rishikesh Singh</b></sub>
+      </a><br />
+      <sub>Core Developer & ML Architecture</sub><br />
+      <a href="https://github.com/singhrishikesh1" title="GitHub">💻 📖 🔬</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/hiyashaikh16">
+        <img src="https://github.com/hiyashaikh16.png" width="100px;" alt="Hiya Shaikh"/><br />
+        <sub><b>Hiya Shaikh</b></sub>
+      </a><br />
+      <sub>Core Developer & Systems Engineering</sub><br />
+      <a href="https://github.com/hiyashaikh16" title="GitHub">💻 🎨 📊</a>
+    </td>
+  </tr>
+</table>
+
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for full contributor details, profiles, and contribution guidelines.
+
+

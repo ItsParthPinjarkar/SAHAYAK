@@ -190,6 +190,15 @@ tower_density = st.sidebar.slider("Tower Density (towers/km²)", 0.05, 5.0, floa
 historical_outage_count = st.sidebar.number_input("Historical Outage Count", value=int(preset_vals["historical_outage_count"]))
 historical_disaster_frequency = st.sidebar.number_input("Historical Disaster Frequency", value=int(preset_vals["historical_disaster_frequency"]))
 
+st.sidebar.markdown("---")
+st.sidebar.markdown("""
+<div style='text-align: center; font-size: 0.8rem; color: #868e96;'>
+    <b>SAHAYAK AI System</b><br>
+    Built by <a href='https://github.com/singhrishikesh1' target='_blank' style='color:#4dabf7; text-decoration:none;'>@singhrishikesh1</a> & <a href='https://github.com/hiyashaikh16' target='_blank' style='color:#4dabf7; text-decoration:none;'>@hiyashaikh16</a>
+</div>
+""", unsafe_allow_html=True)
+
+
 # Formulate Payload
 payload = {
     "latitude": latitude, "longitude": longitude, "disaster_type": disaster_type,

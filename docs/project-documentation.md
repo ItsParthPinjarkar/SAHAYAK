@@ -114,3 +114,11 @@ uvicorn api.main:app --reload --port 8000
 # 4. Launch Command Center Dashboard
 streamlit run dashboard/app.py
 ```
+
+---
+
+## 6. Project Contributors
+
+- **Rishikesh Singh** ([@singhrishikesh1](https://github.com/singhrishikesh1)) — Core Developer & Machine Learning Research
+- **Hiya Shaikh** ([@hiyashaikh16](https://github.com/hiyashaikh16)) — Core Developer & System Architecture / Analytics
+

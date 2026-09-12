@@ -1,0 +1,57 @@
+╔══════════════════════════════════════════════════════════════╗
+║   ANTIGRAVITY AEGIS — TRIPLE ENGINE TRAINING REPORT          ║
+╚══════════════════════════════════════════════════════════════╝
+Training Records:  10,000 (Disaster) + 4,000 (Shelters)
+Timestamp:         2026-09-11 17:53:01
+XGBoost Used:      True
+
+──────────────────────────────────────────────────────────────
+ENGINE 1 — TELECOM SILENT ZONE CLASSIFIER
+──────────────────────────────────────────────────────────────
+  Model Type:        VotingEnsemble_RF+GB+ET+XGB
+  Accuracy:          0.8872
+  Precision:         0.8029
+  Recall:            0.9415  ◄ Disaster Critical
+  F1-Score:          0.8667
+  ROC-AUC:           0.9712
+  Optimal Threshold: 0.30
+  Training Time:     332.4s
+
+Classification Report:
+              precision    recall  f1-score   support
+
+ Normal Zone       0.96      0.85      0.90      1099
+ Silent Zone       0.80      0.94      0.87       701
+
+    accuracy                           0.89      1800
+   macro avg       0.88      0.90      0.88      1800
+weighted avg       0.90      0.89      0.89      1800
+
+
+──────────────────────────────────────────────────────────────
+ENGINE 2 — PHYSICAL DISASTER IMPACT MODEL
+──────────────────────────────────────────────────────────────
+  Model Type:        EnsembleRegressor_GB+RF+XGB
+  Physical Damage Score:
+    R² = 0.9804  |  MAE = 2.301  |  RMSE = 2.931
+  Affected Radius (km):
+    R² = 0.9289  |  MAE = 3.994  |  RMSE = 4.700
+  Time-to-Blackout (hrs):
+    R² = 0.6782  |  MAE = 1.221  |  RMSE = 1.634
+  Severity Tier Accuracy:  91.2%
+  Training Time:           165.0s
+
+──────────────────────────────────────────────────────────────
+ENGINE 3 — SHELTER RESOURCE REDISTRIBUTION ENGINE
+──────────────────────────────────────────────────────────────
+  Model Type:              Ensemble (GBM Regressor + RF Classifier)
+  Shortage Score R²:       0.9909  (MAE: 2.026)
+  Urgency Tier Accuracy:   94.70%  (F1: 0.9489)
+  Training Time:           11.4s
+
+══════════════════════════════════════════════════════════════
+All three model bundles saved to:  models/
+  • silent_zone_model.pkl      (Engine 1)
+  • disaster_impact_model.pkl  (Engine 2)
+  • shelter_resource_model.pkl (Engine 3)
+══════════════════════════════════════════════════════════════

@@ -1,0 +1,39 @@
+{
+  "projectName": "sahayak-silent-zone-detection",
+  "projectOwner": "sahayak",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md",
+    "CONTRIBUTORS.md"
+  ],
+  "imageSize": 100,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "singhrishikesh1",
+      "name": "Rishikesh Singh",
+      "avatar_url": "https://github.com/singhrishikesh1.png",
+      "profile": "https://github.com/singhrishikesh1",
+      "contributions": [
+        "code",
+        "doc",
+        "research",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "hiyashaikh16",
+      "name": "Hiya Shaikh",
+      "avatar_url": "https://github.com/hiyashaikh16.png",
+      "profile": "https://github.com/hiyashaikh16",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "data"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

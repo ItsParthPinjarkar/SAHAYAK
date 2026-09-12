@@ -59,6 +59,12 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 if os.path.basename(BASE_DIR) == "src":
     BASE_DIR = os.path.dirname(BASE_DIR)
 
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+src_dir = os.path.join(BASE_DIR, "src")
+if src_dir not in sys.path:
+    sys.path.insert(0, src_dir)
+
 DATA_DIR   = os.path.join(BASE_DIR, "data")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 os.makedirs(DATA_DIR, exist_ok=True)
@@ -411,7 +417,7 @@ def build_engine1_pipeline(classifier) -> Pipeline:
     num_pipe = Pipeline([("imp", SimpleImputer(strategy="median")), ("scaler", RobustScaler())])
     cat_pipe = Pipeline([("imp", SimpleImputer(strategy="most_frequent")), ("ohe", OneHotEncoder(handle_unknown="ignore", sparse_output=False))])
     pre = ColumnTransformer([("num", num_pipe, all_num), ("cat", cat_pipe, CATEGORICAL_FEATURES)], remainder="drop")
-    return Pipeline([("fe", DisasterFeatureEngineer()), ("pre", pre), ("clf", classifier)])
+    return Pipeline([("feature_engineer", DisasterFeatureEngineer()), ("preprocessor", pre), ("classifier", classifier)])
 
 
 def train_engine1(df: pd.DataFrame) -> dict:
@@ -728,8 +734,12 @@ def train_engine3(n_samples: int = N_SHELTERS) -> dict:
     t0 = time.time()
 
     # Import or generate shelter dataset
-    from src.generate_shelter_dataset import generate_shelter_dataset
-    from src.shelter_resource_engine import ShelterResourceFeatureTransformer
+    try:
+        from src.generate_shelter_dataset import generate_shelter_dataset
+        from src.shelter_resource_engine import ShelterResourceFeatureTransformer
+    except ImportError:
+        from generate_shelter_dataset import generate_shelter_dataset
+        from shelter_resource_engine import ShelterResourceFeatureTransformer
     
     df_shelters = generate_shelter_dataset(n_samples, seed=RANDOM_SEED)
     df_shelters.to_csv(SHELTER_DATA_PATH, index=False)

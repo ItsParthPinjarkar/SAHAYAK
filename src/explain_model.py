@@ -51,9 +51,18 @@ logger = logging.getLogger(__name__)
 def extract_pipeline_components(bundle: Dict[str, Any]):
     """Extracts preprocessor, feature engineer, and tree classifier from saved pipeline."""
     pipeline = bundle["pipeline"]
-    feature_engineer = pipeline.named_steps["feature_engineer"]
-    preprocessor = pipeline.named_steps["preprocessor"]
-    classifier = pipeline.named_steps["classifier"]
+    feature_engineer = (
+        pipeline.named_steps.get("feature_engineer")
+        or pipeline.named_steps.get("fe")
+    )
+    preprocessor = (
+        pipeline.named_steps.get("preprocessor")
+        or pipeline.named_steps.get("pre")
+    )
+    classifier = (
+        pipeline.named_steps.get("classifier")
+        or pipeline.named_steps.get("clf")
+    )
     return feature_engineer, preprocessor, classifier
 
 
@@ -166,12 +175,22 @@ def explain_single_prediction(
     explainer = shap.TreeExplainer(classifier)
     shap_vals = explainer.shap_values(x_trans)
 
-    if isinstance(shap_vals, list):
-        sv = shap_vals[1][0]
-    elif len(shap_vals.shape) == 3:
+    if hasattr(shap_vals, "values"):
+        vals = shap_vals.values
+        if len(vals.shape) == 3:
+            sv = vals[0, :, 1]
+        elif len(vals.shape) == 2 and vals.shape[0] == 1:
+            sv = vals[0]
+        else:
+            sv = vals
+    elif isinstance(shap_vals, list):
+        sv = shap_vals[1][0] if len(shap_vals) > 1 else shap_vals[0][0]
+    elif hasattr(shap_vals, "shape") and len(shap_vals.shape) == 3:
         sv = shap_vals[0, :, 1]
-    else:
+    elif hasattr(shap_vals, "shape") and len(shap_vals.shape) == 2 and shap_vals.shape[0] == 1:
         sv = shap_vals[0]
+    else:
+        sv = shap_vals
 
     # Rank features by positive contribution towards Silent Zone
     feature_contributions = []

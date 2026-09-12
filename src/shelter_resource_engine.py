@@ -79,6 +79,18 @@ class ShelterResourceFeatureTransformer(BaseEstimator, TransformerMixin):
         road_acc = df.get("road_access", pd.Series(1, index=df.index)).clip(lower=0, upper=1)
         pwr_hrs = df.get("power_backup_hours", pd.Series(24.0, index=df.index)).clip(lower=0.0)
 
+        # Ensure raw feature columns exist in df
+        df["current_occupancy"] = occ
+        df["capacity_people"] = cap
+        df["vulnerable_ratio"] = vuln
+        df["food_rations_kg"] = food_kg
+        df["water_liters"] = water_l
+        df["medical_kits"] = med_kits
+        df["blankets_count"] = blankets
+        df["days_isolated"] = days_iso
+        df["road_access"] = road_acc
+        df["power_backup_hours"] = pwr_hrs
+
         # Daily requirement rates
         req_food_day = occ * self.standards["food_rations_kg_per_person_day"]
         req_water_day = occ * self.standards["water_liters_per_person_day"]
